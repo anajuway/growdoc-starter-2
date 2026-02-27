@@ -170,7 +170,7 @@ export default function EnsaioArtIA() {
 
       {/* Stats */}
       <div className="mt-12 md:mt-16 px-6 md:px-12 max-w-6xl mx-auto">
-        <div className="grid grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
           {[
             { valor: "7 dias", label: "prazo máximo de entrega" },
             { valor: "R$0", label: "sem custo de estúdio" },
@@ -185,7 +185,7 @@ export default function EnsaioArtIA() {
               className="text-center bg-white/3 border border-white/5 rounded-2xl p-4 md:p-6"
             >
               <div className="text-3xl md:text-4xl font-bold text-gradient">{stat.valor}</div>
-              <div className="text-white/35 text-xs md:text-sm mt-1 whitespace-nowrap">{stat.label}</div>
+              <div className="text-white/35 text-xs md:text-sm mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </div>

@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* ── Axiforma Font Family ── */
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Book.ttf') format('truetype');
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── GrowDoc Design Tokens ── */
+@theme inline {
+  --color-background: #131515;
+  --color-foreground: #ffffff;
+
+  /* Brand colors */
+  --color-green-accent: #01FEC2;
+  --color-green-dark: #006C60;
+  --color-green-mid: #008879;
+  --color-green-base: #009988;
+  --color-green-light: #00B3A0;
+  --color-dark: #131515;
+  --color-dark-card: #1a1d1d;
+  --color-dark-border: #2a2e2e;
+
+  /* Font */
+  --font-sans: 'Axiforma', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #131515;
+  color: #ffffff;
+  font-family: 'Axiforma', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Glow accent utility ── */
+.glow-accent {
+  box-shadow: 0 0 40px rgba(1, 254, 194, 0.15);
+}
+
+.glow-accent-strong {
+  box-shadow: 0 0 60px rgba(1, 254, 194, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #01FEC2 0%, #00B3A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

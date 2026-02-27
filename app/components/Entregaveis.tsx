@@ -197,13 +197,13 @@ export default function Entregaveis() {
                   <Instagram className="w-6 h-6 text-[#01FEC2]" />
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold mb-3">Posts Iniciais para Instagram</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">3 Posts Iniciais para Instagram</h3>
                 <p className="text-white/50 leading-relaxed max-w-sm mb-6">
-                  Conteúdos introdutórios para apresentar você ao seu público. Vídeo, estático ou carrossel — no formato que fizer mais sentido para você.
+                  3 conteúdos introdutórios para apresentar você ao seu público. Vídeo, estático ou carrossel — no formato que fizer mais sentido para você.
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {["Vídeo ou estático", "Copy inclusa", "Apresentação profissional"].map((tag) => (
+                  {["3 posts", "Vídeo ou estático", "Copy inclusa"].map((tag) => (
                     <span key={tag} className="text-xs text-[#01FEC2]/80 bg-[#01FEC2]/8 border border-[#01FEC2]/15 px-3 py-1.5 rounded-full">
                       {tag}
                     </span>

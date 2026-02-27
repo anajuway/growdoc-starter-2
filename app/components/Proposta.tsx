@@ -9,7 +9,7 @@ const entregaveis = [
   "Landing Page de alta conversão (hospedada pela GrowDoc)",
   "Ficha Google Meu Negócio com SEO",
   "Ensaio ART.IA — 5 fotos profissionais",
-  "Posts Iniciais para Instagram (vídeo, estático ou carrossel)",
+  "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)",
   "Acesso à Plataforma GrowDoc (aulas)",
 ];
 

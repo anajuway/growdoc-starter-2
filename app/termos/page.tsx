@@ -17,7 +17,7 @@ const pontosPrincipais = [
       { tipo: "ok", texto: "Landing Page profissional (hospedada no domínio GrowDoc)" },
       { tipo: "ok", texto: "Ficha Google Meu Negócio configurada com SEO" },
       { tipo: "ok", texto: "Ensaio ART.IA — 5 fotos profissionais com IA" },
-      { tipo: "ok", texto: "Posts Iniciais para Instagram (vídeo, estático ou carrossel)" },
+      { tipo: "ok", texto: "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)" },
       { tipo: "ok", texto: "Acesso à Plataforma GrowDoc (aulas para sua 1ª campanha)" },
     ],
   },
@@ -58,7 +58,7 @@ Implementação do Growdoc Program STARTER 2, conforme entregáveis descritos ne
 a) Landing Page de alta conversão (hospedada no domínio GrowDoc);
 b) Configuração da Ficha Google Meu Negócio com palavras-chave de SEO;
 c) Ensaio ART.IA — 5 fotos profissionais geradas com IA;
-d) Posts Iniciais para Instagram (vídeo, estático ou carrossel — formato a definir com o cliente);
+d) 3 (três) Posts Iniciais para Instagram (vídeo, estático ou carrossel — formato a definir com o cliente);
 e) Acesso à Plataforma GrowDoc com aulas para estruturar a 1ª campanha.
 
 3. PAGAMENTO

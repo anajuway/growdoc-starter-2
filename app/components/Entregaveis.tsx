@@ -186,25 +186,92 @@ export default function Entregaveis() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.18 }}
             whileHover={{ y: -6 }}
-            className="relative bg-[#1a1d1d] border border-[#2a2e2e] hover:border-[#01FEC2]/20 rounded-3xl p-7 overflow-hidden group transition-all duration-300"
+            className="md:col-span-2 relative bg-[#1a1d1d] border border-[#2a2e2e] hover:border-[#01FEC2]/20 rounded-3xl p-8 md:p-10 overflow-hidden group transition-all duration-300"
           >
-            <span className="text-7xl font-bold text-white/3 absolute top-4 right-6 select-none">04</span>
+            <div className="flex items-start gap-8">
+              {/* Conteúdo */}
+              <div className="flex-1 min-w-0">
+                <span className="text-7xl font-bold text-white/3 absolute top-6 right-8 select-none hidden lg:block">04</span>
 
-            <div className="w-12 h-12 rounded-xl bg-[#01FEC2]/10 flex items-center justify-center mb-5 group-hover:bg-[#01FEC2]/15 transition-colors">
-              <Instagram className="w-6 h-6 text-[#01FEC2]" />
-            </div>
+                <div className="w-12 h-12 rounded-xl bg-[#01FEC2]/10 flex items-center justify-center mb-5 group-hover:bg-[#01FEC2]/15 transition-colors">
+                  <Instagram className="w-6 h-6 text-[#01FEC2]" />
+                </div>
 
-            <h3 className="text-xl font-bold mb-2">Posts Iniciais para Instagram</h3>
-            <p className="text-white/45 text-sm leading-relaxed mb-4">
-              Conteúdos introdutórios pensados para apresentar você ao seu público no Instagram. Vídeo, estático ou carrossel — no formato que fizer mais sentido para você.
-            </p>
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">Posts Iniciais para Instagram</h3>
+                <p className="text-white/50 leading-relaxed max-w-sm mb-6">
+                  Conteúdos introdutórios para apresentar você ao seu público. Vídeo, estático ou carrossel — no formato que fizer mais sentido para você.
+                </p>
 
-            <div className="flex flex-wrap gap-2">
-              {["Vídeo ou estático", "Copy inclusa", "Apresentação profissional"].map((tag) => (
-                <span key={tag} className="text-xs text-[#01FEC2]/70 bg-[#01FEC2]/6 border border-[#01FEC2]/12 px-2.5 py-1 rounded-full">
-                  {tag}
-                </span>
-              ))}
+                <div className="flex flex-wrap gap-2">
+                  {["Vídeo ou estático", "Copy inclusa", "Apresentação profissional"].map((tag) => (
+                    <span key={tag} className="text-xs text-[#01FEC2]/80 bg-[#01FEC2]/8 border border-[#01FEC2]/15 px-3 py-1.5 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Phone mockup Instagram — visível só em lg+ */}
+              <motion.div
+                className="hidden lg:flex flex-col flex-shrink-0 w-48"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div
+                  className="rounded-2xl overflow-hidden border border-white/10"
+                  style={{ boxShadow: "0 16px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(1,254,194,0.08)" }}
+                >
+                  {/* Header Instagram */}
+                  <div className="bg-[#0d1010] px-3 py-2.5 flex items-center gap-2 border-b border-white/5">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#01FEC2]/40 to-[#006C60]/60 flex-shrink-0" />
+                    <span className="text-white/30 text-[9px] font-mono flex-1">dr.seunome</span>
+                    <div className="w-3 h-3 rounded-sm bg-white/10" />
+                  </div>
+
+                  {/* Grid 3x3 simulando posts */}
+                  <div className="bg-[#0a0d0d] p-0.5 grid grid-cols-3 gap-0.5">
+                    {[
+                      "bg-gradient-to-br from-[#01FEC2]/20 to-[#006C60]/30",
+                      "bg-gradient-to-br from-[#006C60]/25 to-[#01FEC2]/10",
+                      "bg-gradient-to-br from-[#01FEC2]/15 to-[#008879]/20",
+                      "bg-gradient-to-br from-[#008879]/20 to-[#01FEC2]/15",
+                      "bg-gradient-to-br from-[#01FEC2]/25 to-[#006C60]/20",
+                      "bg-gradient-to-br from-[#006C60]/30 to-[#01FEC2]/10",
+                      "bg-gradient-to-br from-[#01FEC2]/10 to-[#00B3A0]/20",
+                      "bg-gradient-to-br from-[#00B3A0]/20 to-[#01FEC2]/15",
+                      "bg-gradient-to-br from-[#01FEC2]/20 to-[#008879]/25",
+                    ].map((cls, i) => (
+                      <div key={i} className={`aspect-square ${cls} relative`}>
+                        {i === 0 && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-4 h-4 rounded-full border-2 border-[#01FEC2]/40 flex items-center justify-center">
+                              <div className="w-0 h-0 border-t-[4px] border-b-[4px] border-l-[6px] border-transparent border-l-[#01FEC2]/60 ml-0.5" />
+                            </div>
+                          </div>
+                        )}
+                        {i === 4 && (
+                          <div className="absolute bottom-1 right-1">
+                            <div className="w-3 h-1 bg-[#01FEC2]/30 rounded-full" />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="bg-[#0d1010] px-3 py-2 flex items-center justify-between border-t border-white/5">
+                    <div className="flex gap-3">
+                      <div className="w-4 h-4 rounded-sm bg-white/8" />
+                      <div className="w-4 h-4 rounded-sm bg-white/8" />
+                      <div className="w-4 h-4 rounded-sm bg-white/8" />
+                    </div>
+                    <div className="w-4 h-4 rounded-sm bg-white/8" />
+                  </div>
+                </div>
+                <p className="text-center text-white/20 text-[9px] mt-2 font-mono tracking-wider">preview</p>
+              </motion.div>
             </div>
           </motion.div>
 

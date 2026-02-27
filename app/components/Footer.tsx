@@ -81,7 +81,7 @@ export default function Footer() {
           </motion.a>
 
           <p className="mt-6 text-white/20 text-sm">
-            R$3.000 · Plano de 1 mês · Entrega garantida
+            R$3.500 · Plano de 1 mês · Entrega garantida
           </p>
         </motion.div>
       </div>

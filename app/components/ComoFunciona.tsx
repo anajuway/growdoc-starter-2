@@ -130,7 +130,7 @@ export default function ComoFunciona() {
                     <h3 className="font-semibold text-white/40">Acompanhamento contínuo</h3>
                   </div>
                   <a
-                    href="https://checkout.barte.com/payment-link/6eb4b483-c2f0-4cf6-8993-9dcc311a3527"
+                    href="https://pay.barte.com/payment-link/dae0215c-e812-4bb6-b08e-117e620ef82c"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-[10px] font-bold text-[#01FEC2]/70 bg-[#01FEC2]/8 border border-[#01FEC2]/20 px-2.5 py-1 rounded-full hover:text-[#01FEC2] hover:border-[#01FEC2]/40 transition-colors whitespace-nowrap self-start"

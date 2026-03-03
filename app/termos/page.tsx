@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Check, Shield, Clock, FileText, ArrowRight, AlertCircle, Info } from "lucide-react";
 import confetti from "canvas-confetti";
 
-const CHECKOUT_URL = "https://pay.barte.com/payment-link/5f010996-9f70-46c4-af5c-900f7bc0d32a";
+const CHECKOUT_URL = "https://pay.barte.com/payment-link/dae0215c-e812-4bb6-b08e-117e620ef82c";
 const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMsMAp-HVv_LiVTntFFNk-zznUUKj0usBgpfH_LaojDG_Y_b0pt6KQF2LDfevBrUk/exec";
 
 const pontosPrincipais = [
@@ -42,7 +42,7 @@ const pontosPrincipais = [
   },
 ];
 
-const termosCompletos = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS — GROWDOC STARTER 2
+const termosCompletos = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS — GROWDOC STARTER PLUS
 
 CONTRATADA: GROWDOC LTDA.
 CNPJ: 65.329.313/0001-33
@@ -52,7 +52,7 @@ Contato: financeiro@growdoc.com.br
 CONTRATANTE: Identificado no momento da compra (dados fornecidos na plataforma de pagamento).
 
 1. OBJETO
-Implementação do Growdoc Program STARTER 2, conforme entregáveis descritos nesta página. Não estão incluídos serviços de tráfego pago, gestão de redes sociais, branding, ou quaisquer outros serviços não expressamente listados.
+Implementação do Growdoc STARTER PLUS, conforme entregáveis descritos nesta página. Não estão incluídos serviços de tráfego pago, gestão de redes sociais, branding, ou quaisquer outros serviços não expressamente listados.
 
 2. ENTREGÁVEIS
 a) Landing Page de alta conversão (hospedada no domínio GrowDoc);
@@ -116,7 +116,7 @@ async function registrarAceite() {
 
     const body = new URLSearchParams({
       timestamp: new Date().toISOString(),
-      plano: "GrowDoc Starter 2",
+      plano: "GrowDoc Starter Plus",
       ip,
       userAgent: navigator.userAgent.substring(0, 250),
       url: window.location.href,

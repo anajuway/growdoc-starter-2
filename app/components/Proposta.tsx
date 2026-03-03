@@ -52,7 +52,7 @@ export default function Proposta() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div>
               <p className="text-[#01FEC2] text-sm font-semibold tracking-widest uppercase mb-1">Plano</p>
-              <h3 className="text-2xl md:text-3xl font-bold">GrowDoc Starter 2</h3>
+              <h3 className="text-2xl md:text-3xl font-bold">GrowDoc Starter Plus</h3>
             </div>
             <div className="sm:text-right">
               <p className="text-white/40 text-sm">Investimento</p>

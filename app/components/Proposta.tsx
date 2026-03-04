@@ -10,7 +10,7 @@ const entregaveis = [
   "Ficha Google Meu Negócio com SEO",
   "Ensaio ART.IA — 5 fotos profissionais",
   "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)",
-  "Acesso à Plataforma GrowDoc (aulas)",
+  "Manual de Sobrevivência do Marketing Médico (livro digital)",
 ];
 
 const condicoes = [
@@ -92,18 +92,7 @@ export default function Proposta() {
             ))}
           </div>
 
-          {/* CTA */}
-          <motion.a
-            href={CHECKOUT_URL}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center gap-3 w-full bg-[#01FEC2] text-[#131515] font-bold text-lg py-5 rounded-2xl glow-accent-strong hover:brightness-105 transition-all"
-          >
-            Quero começar agora
-            <ArrowRight className="w-5 h-5" />
-          </motion.a>
-
-          <p className="text-center text-white/25 text-xs mt-4">
+          <p className="text-center text-white/25 text-xs">
             Valores definitivos · Não sujeitos a estorno após confirmação do pagamento
           </p>
         </motion.div>

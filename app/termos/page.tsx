@@ -8,6 +8,7 @@ import confetti from "canvas-confetti";
 
 const CHECKOUT_URL = "https://pay.barte.com/payment-link/dae0215c-e812-4bb6-b08e-117e620ef82c";
 const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMsMAp-HVv_LiVTntFFNk-zznUUKj0usBgpfH_LaojDG_Y_b0pt6KQF2LDfevBrUk/exec";
+const FORMSPREE_URL = "https://formspree.io/f/xpqjvelq";
 
 const pontosPrincipais = [
   {
@@ -18,7 +19,7 @@ const pontosPrincipais = [
       { tipo: "ok", texto: "Ficha Google Meu Negócio configurada com SEO" },
       { tipo: "ok", texto: "Ensaio ART.IA — 5 fotos profissionais com IA" },
       { tipo: "ok", texto: "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)" },
-      { tipo: "ok", texto: "Acesso à Plataforma GrowDoc (aulas para sua 1ª campanha)" },
+      { tipo: "ok", texto: "Manual de Sobrevivência do Marketing Médico (livro digital exclusivo GrowDoc)" },
     ],
   },
   {
@@ -59,7 +60,7 @@ a) Landing Page de alta conversão (hospedada no domínio GrowDoc);
 b) Configuração da Ficha Google Meu Negócio com palavras-chave de SEO;
 c) Ensaio ART.IA — 5 fotos profissionais geradas com IA;
 d) 3 (três) Posts Iniciais para Instagram (vídeo, estático ou carrossel — formato a definir com o cliente);
-e) Acesso à Plataforma GrowDoc com aulas para estruturar a 1ª campanha.
+e) Manual de Sobrevivência do Marketing Médico — livro digital exclusivo GrowDoc, disponível para consumo enquanto a assinatura estiver ativa.
 
 3. PAGAMENTO
 Valor total: R$ 3.500,00, pagável via PIX, boleto ou cartão de crédito. O link de pagamento tem validade de 5 dias corridos.
@@ -104,31 +105,39 @@ Ao clicar em "Entendi, quero começar!", o Contratante declara ter lido, compree
 
 A confirmação do pagamento constitui aceite integral e irrevogável de todos os termos e condições desta contratação, independentemente de qualquer outra formalidade.`;
 
-async function registrarAceite() {
-  if (!WEBHOOK_URL) return;
+async function registrarAceite(nome: string, email: string) {
+  let ip = "desconhecido";
   try {
-    let ip = "desconhecido";
+    const r = await fetch("https://api.ipify.org?format=json");
+    const d = await r.json();
+    ip = d.ip;
+  } catch {}
+
+  const timestamp = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+
+  if (WEBHOOK_URL) {
     try {
-      const r = await fetch("https://api.ipify.org?format=json");
-      const d = await r.json();
-      ip = d.ip;
+      const body = new URLSearchParams({ timestamp, plano: "GrowDoc Starter Plus", nome, email, ip, userAgent: navigator.userAgent.substring(0, 250), url: window.location.href });
+      fetch(WEBHOOK_URL, { method: "POST", mode: "no-cors", body });
     } catch {}
+  }
 
-    const body = new URLSearchParams({
-      timestamp: new Date().toISOString(),
-      plano: "GrowDoc Starter Plus",
-      ip,
-      userAgent: navigator.userAgent.substring(0, 250),
-      url: window.location.href,
+  try {
+    fetch(FORMSPREE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ nome, email, plano: "GrowDoc Starter Plus", timestamp, ip }),
     });
-
-    fetch(WEBHOOK_URL, { method: "POST", mode: "no-cors", body });
   } catch {}
 }
 
 export default function TermosPage() {
   const [acordoMarcado, setAcordoMarcado] = useState(false);
   const [termosAbertos, setTermosAbertos] = useState(false);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+
+  const podeProsseguir = acordoMarcado && nome.trim().length > 2 && email.includes("@");
 
   const handleCheckbox = (checked: boolean) => {
     setAcordoMarcado(checked);
@@ -144,8 +153,8 @@ export default function TermosPage() {
   };
 
   const handleConcordar = async (e: React.MouseEvent) => {
-    if (!acordoMarcado) { e.preventDefault(); return; }
-    registrarAceite();
+    if (!podeProsseguir) { e.preventDefault(); return; }
+    registrarAceite(nome, email);
   };
 
   return (
@@ -313,14 +322,35 @@ export default function TermosPage() {
           <AnimatePresence>
             {acordoMarcado && (
               <motion.div
-                initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="mt-4 flex items-center gap-2 text-[#01FEC2] text-sm font-medium"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                className="mt-5 space-y-3"
               >
-                <span className="text-lg">🎉</span>
-                Ótimo! Você está a um passo de transformar sua presença digital.
+                <p className="text-[#01FEC2] text-sm font-medium flex items-center gap-2">
+                  <span>🎉</span> Ótimo! Só mais dois campos para registrar seu aceite.
+                </p>
+                <div>
+                  <label className="block text-white/40 text-xs mb-1.5 font-medium">Nome completo</label>
+                  <input
+                    type="text"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    placeholder="Dr. João Silva"
+                    className="w-full bg-[#1a1d1d] border border-white/10 rounded-xl py-3 px-4 text-sm text-white placeholder:text-white/20 outline-none transition-colors focus:border-[#01FEC2]/50 font-[Axiforma,sans-serif]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/40 text-xs mb-1.5 font-medium">E-mail</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="joao@exemplo.com"
+                    className="w-full bg-[#1a1d1d] border border-white/10 rounded-xl py-3 px-4 text-sm text-white placeholder:text-white/20 outline-none transition-colors focus:border-[#01FEC2]/50 font-[Axiforma,sans-serif]"
+                  />
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -347,14 +377,14 @@ export default function TermosPage() {
           transition={{ duration: 0.4, delay: 0.8 }}
         >
           <motion.a
-            href={acordoMarcado ? CHECKOUT_URL : undefined}
+            href={podeProsseguir ? CHECKOUT_URL : undefined}
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleConcordar}
-            whileHover={acordoMarcado ? { scale: 1.02 } : {}}
-            whileTap={acordoMarcado ? { scale: 0.98 } : {}}
+            whileHover={podeProsseguir ? { scale: 1.02 } : {}}
+            whileTap={podeProsseguir ? { scale: 0.98 } : {}}
             className={`flex items-center justify-center gap-3 w-full font-bold text-base py-4 rounded-2xl transition-all duration-300 ${
-              acordoMarcado
+              podeProsseguir
                 ? "bg-[#01FEC2] text-[#131515] cursor-pointer shadow-[0_0_40px_rgba(1,254,194,0.25)]"
                 : "bg-white/5 text-white/25 cursor-not-allowed border border-white/10"
             }`}
@@ -366,6 +396,11 @@ export default function TermosPage() {
           {!acordoMarcado && (
             <p className="text-center text-white/25 text-xs mt-3">
               Marque a caixa acima para continuar
+            </p>
+          )}
+          {acordoMarcado && !podeProsseguir && (
+            <p className="text-center text-white/25 text-xs mt-3">
+              Preencha nome e e-mail para continuar
             </p>
           )}
 

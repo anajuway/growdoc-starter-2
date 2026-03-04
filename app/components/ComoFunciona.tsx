@@ -37,7 +37,7 @@ const steps = [
   {
     icon: PackageCheck,
     titulo: "Entrega do projeto",
-    descricao: "Você recebe tudo pronto: Landing Page publicada, Ficha Google Meu Negócio configurada, Ensaio ART.IA e acesso à Plataforma GrowDoc.",
+    descricao: "Você recebe tudo pronto: Landing Page publicada, Ficha Google Meu Negócio configurada, Ensaio ART.IA e o Manual de Sobrevivência do Marketing Médico.",
   },
 ];
 
@@ -129,15 +129,9 @@ export default function ComoFunciona() {
                     <span className="text-white/20 text-xs font-mono">08</span>
                     <h3 className="font-semibold text-white/40">Acompanhamento contínuo</h3>
                   </div>
-                  <a
-                    href="https://pay.barte.com/payment-link/dae0215c-e812-4bb6-b08e-117e620ef82c"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[10px] font-bold text-[#01FEC2]/70 bg-[#01FEC2]/8 border border-[#01FEC2]/20 px-2.5 py-1 rounded-full hover:text-[#01FEC2] hover:border-[#01FEC2]/40 transition-colors whitespace-nowrap self-start"
-                  >
-                    <ArrowUpRight className="w-3 h-3 flex-shrink-0" />
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#01FEC2]/70 bg-[#01FEC2]/8 border border-[#01FEC2]/20 px-2.5 py-1 rounded-full whitespace-nowrap self-start">
                     Disponível nos planos de recorrência
-                  </a>
+                  </span>
                 </div>
                 <p className="text-white/25 text-sm leading-relaxed">
                   O time acompanha mensalmente as diretrizes do Google e atualiza sua Ficha Google Meu Negócio conforme necessário — garantindo que você continue bem ranqueado na busca orgânica sem precisar se preocupar com nada.

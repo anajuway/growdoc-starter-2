@@ -286,17 +286,26 @@ export default function Entregaveis() {
           >
             <span className="text-7xl font-bold text-white/3 absolute top-4 right-8 select-none">05</span>
 
-            <div className="w-12 h-12 rounded-xl bg-[#01FEC2]/10 flex items-center justify-center mb-5 group-hover:bg-[#01FEC2]/15 transition-colors">
-              <BookOpen className="w-6 h-6 text-[#01FEC2]" />
+            {/* Mini capa de livro com branding GrowDoc */}
+            <div className="mb-5 relative w-12 h-14 flex-shrink-0">
+              <div className="absolute left-0 top-0 w-2.5 h-full rounded-l-sm bg-[#006C60]" />
+              <div className="absolute left-2 top-0 right-0 h-full rounded-r-md bg-gradient-to-br from-[#008879] to-[#006C60] flex flex-col items-center justify-center gap-1 overflow-hidden shadow-lg group-hover:from-[#01FEC2]/80 group-hover:to-[#008879] transition-all duration-300">
+                <img src="/images/logo-white.png" alt="GrowDoc" className="w-6 object-contain opacity-90" />
+                <div className="flex flex-col gap-0.5 w-5 mt-0.5">
+                  <div className="h-px bg-white/40 rounded-full w-full" />
+                  <div className="h-px bg-white/25 rounded-full w-3/4" />
+                  <div className="h-px bg-white/25 rounded-full w-full" />
+                </div>
+              </div>
             </div>
 
-            <h3 className="text-xl font-bold mb-2">Plataforma GrowDoc</h3>
+            <h3 className="text-xl font-bold mb-2">Manual de Sobrevivência do Marketing Médico</h3>
             <p className="text-white/45 text-sm leading-relaxed mb-4 max-w-md">
-              Aulas passo a passo para você subir sua primeira campanha com segurança. Metodologia desenvolvida especialmente para médicos — sem precisar entender de marketing.
+              Livro digital exclusivo GrowDoc com tudo que o médico precisa saber sobre marketing na saúde. Disponível para consumo enquanto a assinatura estiver ativa.
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {["Aulas exclusivas", "Metodologia validada", "Para médicos"].map((tag) => (
+              {["Livro digital", "Marketing médico", "Para médicos"].map((tag) => (
                 <span key={tag} className="text-xs text-[#01FEC2]/70 bg-[#01FEC2]/6 border border-[#01FEC2]/12 px-2.5 py-1 rounded-full">
                   {tag}
                 </span>

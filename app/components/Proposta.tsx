@@ -1,22 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Clock, Shield, ArrowRight } from "lucide-react";
+import { Check, Clock, Shield, CreditCard } from "lucide-react";
 
 const CHECKOUT_URL = "/termos";
 
-const entregaveis = [
-  "Landing Page de alta conversão (hospedada pela GrowDoc)",
-  "Ficha Google Meu Negócio com SEO",
-  "Ensaio ART.IA — 5 fotos profissionais",
-  "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)",
-  "Manual de Sobrevivência do Marketing Médico (livro digital)",
-];
-
 const condicoes = [
-  { icon: Clock, texto: "Proposta válida por 5 dias" },
-  { icon: Shield, texto: "Entrega em até 1 mês" },
-  { icon: Check, texto: "LP hospedada no domínio GrowDoc" },
+  { icon: Clock, texto: "Entrega em até 1 mês" },
+  { icon: CreditCard, texto: "Pagamento único no início" },
+  { icon: Shield, texto: "Site hospedado no domínio GrowDoc" },
 ];
 
 export default function Proposta() {
@@ -25,7 +17,6 @@ export default function Proposta() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] bg-gradient-to-r from-transparent via-[#01FEC2]/20 to-transparent" />
 
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +31,6 @@ export default function Proposta() {
           </h2>
         </motion.div>
 
-        {/* Card da proposta */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,37 +38,37 @@ export default function Proposta() {
           transition={{ duration: 0.6 }}
           className="relative bg-[#1a1d1d] border border-[#01FEC2]/30 rounded-3xl p-8 md:p-12 glow-accent"
         >
-          {/* Nome do plano */}
+          {/* Nome do plano + preço */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div>
               <p className="text-[#01FEC2] text-sm font-semibold tracking-widest uppercase mb-1">Plano</p>
-              <h3 className="text-2xl md:text-3xl font-bold">GrowDoc Starter Plus</h3>
+              <h3 className="text-2xl md:text-3xl font-bold">Site Institucional GrowDoc</h3>
             </div>
             <div className="sm:text-right">
               <p className="text-white/40 text-sm">Investimento</p>
               <div className="flex items-baseline gap-1">
                 <span className="text-white/60 text-lg">R$</span>
-                <span className="text-4xl md:text-5xl font-bold text-white">3.500</span>
+                <span className="text-4xl md:text-5xl font-bold text-white">1.500</span>
                 <span className="text-white/40">/projeto</span>
               </div>
             </div>
           </div>
 
-          {/* Divisor */}
           <div className="h-px bg-gradient-to-r from-transparent via-[#01FEC2]/20 to-transparent mb-8" />
 
-          {/* Entregáveis */}
+          {/* Entregável */}
           <div className="mb-8">
             <p className="text-white/40 text-xs font-semibold tracking-widest uppercase mb-4">O que está incluso</p>
-            <div className="space-y-3">
-              {entregaveis.map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#01FEC2]/15 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-[#01FEC2]" />
-                  </div>
-                  <span className="text-white/80 text-sm">{item}</span>
-                </div>
-              ))}
+            <div className="flex items-center gap-3 p-4 bg-[#131515]/60 rounded-2xl border border-[#01FEC2]/10">
+              <div className="w-8 h-8 rounded-full bg-[#01FEC2]/15 flex items-center justify-center flex-shrink-0">
+                <Check className="w-4 h-4 text-[#01FEC2]" />
+              </div>
+              <div>
+                <p className="text-white font-medium">Site Institucional Médico</p>
+                <p className="text-white/45 text-sm mt-0.5">
+                  Desenvolvido do zero com design premium, copywriting médico e SEO — hospedado no domínio GrowDoc.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -91,6 +81,16 @@ export default function Proposta() {
               </div>
             ))}
           </div>
+
+          {/* CTA */}
+          <motion.a
+            href={CHECKOUT_URL}
+            whileHover={{ scale: 1.02, boxShadow: "0 0 50px rgba(1,254,194,0.3)" }}
+            whileTap={{ scale: 0.98 }}
+            className="block w-full text-center bg-[#01FEC2] text-[#131515] font-bold text-lg py-4 rounded-2xl transition-all mb-4"
+          >
+            Quero meu site agora
+          </motion.a>
 
           <p className="text-center text-white/25 text-xs">
             Valores definitivos · Não sujeitos a estorno após confirmação do pagamento

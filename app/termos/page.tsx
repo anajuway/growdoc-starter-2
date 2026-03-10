@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Check, Shield, Clock, FileText, ArrowRight, AlertCircle, Info } from "lucide-react";
 import confetti from "canvas-confetti";
 
-const CHECKOUT_URL = "https://pay.barte.com/payment-link/dae0215c-e812-4bb6-b08e-117e620ef82c";
+const CHECKOUT_URL = "https://pay.barte.com/payment-link/ac24dcba-e550-46e9-a3b0-dbc236b64dac";
 const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMsMAp-HVv_LiVTntFFNk-zznUUKj0usBgpfH_LaojDG_Y_b0pt6KQF2LDfevBrUk/exec";
 const FORMSPREE_URL = "https://formspree.io/f/xpqjvelq";
 
@@ -15,11 +15,10 @@ const pontosPrincipais = [
     icon: FileText,
     titulo: "O que você está contratando",
     itens: [
-      { tipo: "ok", texto: "Landing Page profissional (hospedada no domínio GrowDoc)" },
-      { tipo: "ok", texto: "Ficha Google Meu Negócio configurada com SEO" },
-      { tipo: "ok", texto: "Ensaio ART.IA — 5 fotos profissionais com IA" },
-      { tipo: "ok", texto: "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)" },
-      { tipo: "ok", texto: "Manual de Sobrevivência do Marketing Médico (livro digital exclusivo GrowDoc)" },
+      { tipo: "ok", texto: "Site Institucional Médico completo (hospedado no domínio GrowDoc)" },
+      { tipo: "ok", texto: "Design premium personalizado para a sua especialidade" },
+      { tipo: "ok", texto: "Copywriting médico profissional" },
+      { tipo: "ok", texto: "Estrutura otimizada para SEO" },
     ],
   },
   {
@@ -27,7 +26,7 @@ const pontosPrincipais = [
     titulo: "Prazo e entrega",
     itens: [
       { tipo: "ok", texto: "Entrega completa em até 1 mês após o pagamento" },
-      { tipo: "ok", texto: "Proposta válida por 5 dias" },
+      { tipo: "ok", texto: "Pagamento único no início do projeto" },
       { tipo: "ok", texto: "Comunicação via WhatsApp com todo o time" },
     ],
   },
@@ -36,14 +35,14 @@ const pontosPrincipais = [
     titulo: "Importante saber antes de continuar",
     itens: [
       { tipo: "info", texto: "Valores pagos não serão reembolsados" },
-      { tipo: "info", texto: "Por ser projeto único, o contrato encerra-se automaticamente com a entrega dos itens" },
-      { tipo: "info", texto: "A GrowDoc não garante resultados comerciais (pacientes, faturamento etc.) — nosso compromisso é com os itens entregues; a conversão depende de fatores externos" },
-      { tipo: "info", texto: "Não estão incluídos: anúncios pagos, gestão de redes sociais ou branding" },
+      { tipo: "info", texto: "Por ser projeto único, o contrato encerra-se automaticamente com a entrega do site" },
+      { tipo: "info", texto: "A GrowDoc não garante resultados comerciais — nosso compromisso é com o item entregue" },
+      { tipo: "info", texto: "Não estão incluídos: anúncios pagos, gestão de redes sociais, landing page de vendas ou branding" },
     ],
   },
 ];
 
-const termosCompletos = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS — GROWDOC STARTER PLUS
+const termosCompletos = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS — SITE INSTITUCIONAL GROWDOC
 
 CONTRATADA: GROWDOC LTDA.
 CNPJ: 65.329.313/0001-33
@@ -53,17 +52,16 @@ Contato: financeiro@growdoc.com.br
 CONTRATANTE: Identificado no momento da compra (dados fornecidos na plataforma de pagamento).
 
 1. OBJETO
-Implementação do Growdoc STARTER PLUS, conforme entregáveis descritos nesta página. Não estão incluídos serviços de tráfego pago, gestão de redes sociais, branding, ou quaisquer outros serviços não expressamente listados.
+Desenvolvimento e entrega de Site Institucional Médico, conforme entregáveis descritos nesta página. Não estão incluídos serviços de tráfego pago, gestão de redes sociais, landing page de vendas, branding, ou quaisquer outros serviços não expressamente listados.
 
 2. ENTREGÁVEIS
-a) Landing Page de alta conversão (hospedada no domínio GrowDoc);
-b) Configuração da Ficha Google Meu Negócio com palavras-chave de SEO;
-c) Ensaio ART.IA — 5 fotos profissionais geradas com IA;
-d) 3 (três) Posts Iniciais para Instagram (vídeo, estático ou carrossel — formato a definir com o cliente);
-e) Manual de Sobrevivência do Marketing Médico — livro digital exclusivo GrowDoc, disponível para consumo enquanto a assinatura estiver ativa.
+a) Site Institucional completo com design premium personalizado;
+b) Copywriting médico profissional;
+c) Estrutura otimizada para SEO;
+d) Hospedagem no domínio GrowDoc (ex: seunome.growdoc.com.br).
 
 3. PAGAMENTO
-Valor total: R$ 3.500,00, pagável via PIX, boleto ou cartão de crédito. O link de pagamento tem validade de 5 dias corridos.
+Valor total: R$ 1.500,00, pagável via PIX, boleto ou cartão de crédito. Pagamento integral no início do projeto.
 
 4. PRAZO DE EXECUÇÃO
 1 (um) mês a partir da confirmação do pagamento e preenchimento do formulário de onboarding.
@@ -72,33 +70,30 @@ Valor total: R$ 3.500,00, pagável via PIX, boleto ou cartão de crédito. O lin
 O contratante se compromete a participar ativamente do processo, disponibilizar agenda para reuniões, designar um responsável de comunicação e fornecer os materiais e acessos necessários dentro dos prazos acordados.
 
 6. POLÍTICA DE REEMBOLSO E VALORES ANTECIPADOS
-Os valores pagos não são restituídos em hipótese alguma, independentemente do motivo do encerramento. Isso inclui pagamentos antecipados de múltiplos meses ou períodos: caso o Contratante opte por encerrar a contratação antes de usufruir de todos os meses pagos antecipadamente, os valores referentes aos meses não utilizados não serão devolvidos nem convertidos em crédito, salvo acordo expresso por escrito entre as partes.
+Os valores pagos não são restituídos em hipótese alguma, independentemente do motivo do encerramento.
 
-7. AVISO PRÉVIO
-O encerramento da contratação exige comunicação formal por escrito (e-mail ou mensagem no grupo do WhatsApp do projeto) com antecedência mínima de 30 (trinta) dias corridos. O prazo de aviso prévio é improrrogável e não pode ser reduzido unilateralmente pelo Contratante. Durante o período de aviso prévio, os serviços continuam sendo prestados normalmente e as obrigações financeiras do Contratante permanecem vigentes.
+7. ISENÇÃO DE GARANTIA DE RESULTADO
+A GrowDoc se exime de qualquer garantia de resultado comercial, incluindo, mas não se limitando a: número de pacientes gerados, taxa de conversão, retorno financeiro ou faturamento. A Contratada se compromete exclusivamente com a entrega do site descrito no objeto deste contrato.
 
-8. ISENÇÃO DE GARANTIA DE RESULTADO
-A GrowDoc se exime de qualquer garantia de resultado comercial, incluindo, mas não se limitando a: número de pacientes gerados, taxa de conversão, retorno financeiro ou faturamento. O objetivo da GrowDoc é a entrega de leads qualificados (potenciais pacientes); a conversão desses contatos em consultas e procedimentos depende de fatores externos à execução dos serviços, como disponibilidade de agenda, habilidade de atendimento e perfil do consultório. A Contratada se compromete exclusivamente com a entrega dos itens descritos no objeto deste contrato.
+8. APROVAÇÃO TÁCITA DE ENTREGÁVEIS
+Materiais, peças e entregáveis enviados para aprovação serão considerados automaticamente aprovados caso o Contratante não manifeste objeção por escrito em até 5 (cinco) dias corridos após o envio.
 
-9. APROVAÇÃO TÁCITA DE ENTREGÁVEIS
-Materiais, peças e entregáveis enviados para aprovação serão considerados automaticamente aprovados caso o Contratante não manifeste objeção por escrito em até 5 (cinco) dias corridos após o envio. Revisões solicitadas após esse prazo poderão estar sujeitas a cobranças adicionais.
+9. COMPROVAÇÃO DE ENTREGA E REGISTROS
+A Contratada mantém registros de todas as entregas realizadas, incluindo links do site publicado, capturas de tela com data e hora, e confirmações de envio por escrito. Tais registros constituem prova suficiente de prestação dos serviços contratados.
 
-10. COMPROVAÇÃO DE ENTREGA E REGISTROS
-A Contratada mantém registros de todas as entregas realizadas, incluindo, mas não se limitando a: links das páginas publicadas, capturas de tela com data e hora, histórico de mensagens no grupo do WhatsApp do projeto e confirmações de envio por escrito. Tais registros constituem prova suficiente de prestação dos serviços contratados e poderão ser utilizados em eventual litígio administrativo ou judicial. A ausência de contestação formal dentro do prazo previsto na Cláusula 9 confirma o aceite integral dos entregáveis pelo Contratante, não sendo admitida alegação posterior de não entrega dos itens tacitamente aprovados.
+10. CONTESTAÇÃO DE PAGAMENTO (CHARGEBACK)
+A abertura de contestação ou disputa junto à operadora de cartão de crédito após a comprovada prestação dos serviços constitui descumprimento contratual, sujeitando o Contratante à multa prevista neste contrato, acrescida de todos os custos administrativos e legais decorrentes da contestação.
 
-11. CONTESTAÇÃO DE PAGAMENTO (CHARGEBACK)
-A abertura de contestação ou disputa junto à operadora de cartão de crédito, instituição financeira ou plataforma de pagamento (chargeback) após a comprovada prestação dos serviços constitui descumprimento contratual e tentativa de enriquecimento ilícito, sujeitando o Contratante à multa prevista neste contrato, acrescida de todos os custos administrativos e legais decorrentes da contestação. A Contratada se reserva o direito de apresentar todos os registros de entrega como prova de serviço prestado perante as plataformas, órgãos de defesa do consumidor e o Poder Judiciário.
+11. PROPRIEDADE INTELECTUAL E USO DE IMAGEM
+O site produzido é de uso do Contratante após a entrega. A GrowDoc reserva-se o direito de utilizar os materiais para fins de portfólio, casos de sucesso e divulgação, salvo solicitação expressa em contrário por escrito. A hospedagem no domínio GrowDoc é gratuita durante a vigência. A transferência para domínio próprio tem custo adicional. Em caso de inadimplência, a GrowDoc poderá suspender a hospedagem até regularização.
 
-12. PROPRIEDADE INTELECTUAL E USO DE IMAGEM
-Os materiais produzidos durante o contrato (Landing Page, fotos ART.IA, peças visuais) são de uso do Contratante durante a vigência ativa. A GrowDoc reserva-se o direito de utilizar esses materiais — incluindo resultados de campanha, capturas de tela da Landing Page e depoimentos fornecidos pelo Contratante — para fins de portfólio, casos de sucesso e divulgação nas redes sociais, site institucional e apresentações comerciais da GrowDoc, salvo solicitação expressa em contrário por escrito. A hospedagem no domínio GrowDoc é gratuita durante a vigência. A transferência para domínio próprio tem custo de R$1.500,00. Em caso de inadimplência, a GrowDoc poderá suspender a hospedagem até regularização.
-
-13. MULTA POR DESCUMPRIMENTO
+12. MULTA POR DESCUMPRIMENTO
 Em caso de descumprimento não sanado em 30 dias, a parte infratora estará sujeita à multa de R$ 5.000,00, além das perdas e danos cabíveis.
 
-14. PROTEÇÃO DE DADOS (LGPD)
+13. PROTEÇÃO DE DADOS (LGPD)
 Os dados pessoais fornecidos pelo Contratante serão utilizados exclusivamente para execução deste contrato e comunicação relacionada ao projeto, nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
 
-15. FORO
+14. FORO
 Comarca de Belo Horizonte/MG, com renúncia a qualquer outro, por mais privilegiado que seja.
 
 Ao clicar em "Entendi, quero começar!", o Contratante declara ter lido, compreendido e concordado integralmente com todos os termos acima. Este aceite eletrônico tem validade jurídica equivalente a uma assinatura, sendo registrado com data, hora e identificação do dispositivo, nos termos do art. 10 da MP nº 2.200-2/2001.
@@ -117,7 +112,7 @@ async function registrarAceite(nome: string, email: string) {
 
   if (WEBHOOK_URL) {
     try {
-      const body = new URLSearchParams({ timestamp, plano: "GrowDoc Starter Plus", nome, email, ip, userAgent: navigator.userAgent.substring(0, 250), url: window.location.href });
+      const body = new URLSearchParams({ timestamp, plano: "Site Institucional GrowDoc", nome, email, ip, userAgent: navigator.userAgent.substring(0, 250), url: window.location.href });
       fetch(WEBHOOK_URL, { method: "POST", mode: "no-cors", body });
     } catch {}
   }
@@ -126,7 +121,7 @@ async function registrarAceite(nome: string, email: string) {
     fetch(FORMSPREE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ nome, email, plano: "GrowDoc Starter Plus", timestamp, ip }),
+      body: JSON.stringify({ nome, email, plano: "Site Institucional GrowDoc", timestamp, ip }),
     });
   } catch {}
 }
@@ -159,26 +154,16 @@ export default function TermosPage() {
 
   return (
     <main className="min-h-screen bg-[#131515] text-white flex flex-col">
-      {/* Fundo sutil */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[#01FEC2]/4 blur-[120px]" />
       </div>
 
-      {/* Header */}
       <header className="px-6 py-6 flex justify-center border-b border-white/5">
-        <Image
-          src="/images/logo-white.png"
-          alt="GrowDoc"
-          width={120}
-          height={32}
-          className="object-contain"
-        />
+        <Image src="/images/logo-white.png" alt="GrowDoc" width={120} height={32} className="object-contain" />
       </header>
 
-      {/* Conteúdo */}
       <div className="flex-1 px-6 py-10 max-w-2xl mx-auto w-full">
 
-        {/* Indicador de etapas */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -206,7 +191,6 @@ export default function TermosPage() {
           ))}
         </motion.div>
 
-        {/* Título */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -221,7 +205,6 @@ export default function TermosPage() {
           </p>
         </motion.div>
 
-        {/* Pontos principais */}
         <div className="space-y-4 mb-8">
           {pontosPrincipais.map((grupo, i) => (
             <motion.div
@@ -255,7 +238,6 @@ export default function TermosPage() {
           ))}
         </div>
 
-        {/* Termos completos (accordion) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -289,7 +271,6 @@ export default function TermosPage() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Checkbox de aceite */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -354,10 +335,8 @@ export default function TermosPage() {
               </motion.div>
             )}
           </AnimatePresence>
-
         </motion.div>
 
-        {/* Aviso LGPD + legal */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -370,7 +349,6 @@ export default function TermosPage() {
           </p>
         </motion.div>
 
-        {/* Botão CTA */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -409,7 +387,6 @@ export default function TermosPage() {
           </p>
         </motion.div>
 
-        {/* Rodapé */}
         <p className="text-center text-white/15 text-xs mt-10">
           GROWDOC LTDA. · CNPJ 65.329.313/0001-33 · Belo Horizonte/MG
         </p>

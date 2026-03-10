@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Proposta Comercial — GrowDoc Starter Plus",
-  description: "Sua presença digital médica, do zero ao profissional.",
+  title: "Proposta Comercial — Site Institucional GrowDoc",
+  description: "Seu site institucional médico, do zero ao profissional.",
   icons: {
     icon: "/images/favicon.png",
     shortcut: "/images/favicon.png",

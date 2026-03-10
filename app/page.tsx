@@ -1,12 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Diferenciais from "./components/Diferenciais";
 import Entregaveis from "./components/Entregaveis";
-import EnsaioArtIA from "./components/EnsaioArtIA";
 import Portfolio from "./components/Portfolio";
-import ComoFunciona from "./components/ComoFunciona";
-import Depoimentos from "./components/Depoimentos";
-import WallOfLove from "./components/WallOfLove";
+import SitesInstitucionais from "./components/SitesInstitucionais";
 import Proposta from "./components/Proposta";
 import Footer from "./components/Footer";
 import ProgressBar from "./components/ProgressBar";
@@ -19,13 +15,9 @@ export default function Home() {
       <StickyBar />
       <Navbar />
       <Hero />
-      <Diferenciais />
       <Entregaveis />
-      <EnsaioArtIA />
+      <SitesInstitucionais />
       <Portfolio />
-      <ComoFunciona />
-      <Depoimentos />
-      <WallOfLove />
       <Proposta />
       <Footer />
     </main>

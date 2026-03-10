@@ -32,24 +32,18 @@ function ScrollRow({ items, onSelect }: { items: typeof paginas; onSelect: (item
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
+      scrollRef.current.scrollBy({ left: direction === "left" ? -300 : 300, behavior: "smooth" });
     }
   };
 
   return (
     <div className="relative group">
-      {/* Botão esquerdo */}
       <button
         onClick={() => scroll("left")}
         className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 w-10 h-10 rounded-full bg-[#1a1d1d] border border-[#2a2e2e] flex items-center justify-center text-white/60 hover:text-[#01FEC2] hover:border-[#01FEC2]/40 transition-all opacity-0 group-hover:opacity-100"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
-
-      {/* Botão direito */}
       <button
         onClick={() => scroll("right")}
         className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 w-10 h-10 rounded-full bg-[#1a1d1d] border border-[#2a2e2e] flex items-center justify-center text-white/60 hover:text-[#01FEC2] hover:border-[#01FEC2]/40 transition-all opacity-0 group-hover:opacity-100"
@@ -62,45 +56,37 @@ function ScrollRow({ items, onSelect }: { items: typeof paginas; onSelect: (item
         className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-      {items.map((item, i) => (
-        <motion.button
-          key={item.img}
-          onClick={() => onSelect(item)}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: i * 0.06 }}
-          whileHover={{ y: -4, scale: 1.02 }}
-          className="relative flex-shrink-0 w-[240px] md:w-[280px] rounded-xl overflow-hidden snap-start border border-[#2a2e2e] hover:border-[#01FEC2]/40 transition-all duration-300 group cursor-pointer"
-        >
-          {/* Screenshot */}
-          <div className="relative aspect-video bg-[#131515]">
-            <Image
-              src={item.img}
-              alt={item.nome}
-              fill
-              className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-            />
-            {/* Overlay ao hover */}
-            <div className="absolute inset-0 bg-[#131515]/0 group-hover:bg-[#131515]/30 transition-colors duration-300 flex items-center justify-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileHover={{ opacity: 1, scale: 1 }}
-                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#01FEC2]/90 text-[#131515] text-xs font-bold px-3 py-1.5 rounded-full"
-              >
-                Ver capa
-              </motion.div>
+        {items.map((item, i) => (
+          <motion.button
+            key={item.img}
+            onClick={() => onSelect(item)}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.06 }}
+            whileHover={{ y: -4, scale: 1.02 }}
+            className="relative flex-shrink-0 w-[240px] md:w-[280px] rounded-xl overflow-hidden snap-start border border-[#2a2e2e] hover:border-[#01FEC2]/40 transition-all duration-300 group cursor-pointer"
+          >
+            <div className="relative aspect-video bg-[#131515]">
+              <Image
+                src={item.img}
+                alt={item.nome}
+                fill
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-[#131515]/0 group-hover:bg-[#131515]/30 transition-colors duration-300 flex items-center justify-center">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#01FEC2]/90 text-[#131515] text-xs font-bold px-3 py-1.5 rounded-full">
+                  Ver capa
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* Nome */}
-          <div className="bg-[#1a1d1d] px-3 py-2.5 text-left">
-            <p className="text-xs font-medium text-white/60 group-hover:text-white/90 transition-colors truncate">
-              {item.nome}
-            </p>
-          </div>
-        </motion.button>
-      ))}
+            <div className="bg-[#1a1d1d] px-3 py-2.5 text-left">
+              <p className="text-xs font-medium text-white/60 group-hover:text-white/90 transition-colors truncate">
+                {item.nome}
+              </p>
+            </div>
+          </motion.button>
+        ))}
       </div>
     </div>
   );
@@ -113,17 +99,16 @@ export default function Portfolio() {
     <section className="relative py-24 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-[#01FEC2]/15 to-transparent" />
 
-      {/* Header */}
       <div className="px-6 md:px-12 max-w-6xl mx-auto mb-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-[#01FEC2] text-sm font-semibold tracking-widest uppercase">Nossas páginas</span>
+          <span className="text-[#01FEC2] text-sm font-semibold tracking-widest uppercase">Nosso portfólio</span>
           <h2 className="mt-3 text-4xl md:text-5xl font-bold">
-            Páginas que{" "}
-            <span className="text-gradient">convertem pacientes</span>
+            Páginas que já{" "}
+            <span className="text-gradient">construímos</span>
           </h2>
           <p className="mt-3 text-white/40 text-sm">
             Clique em qualquer página para expandir a capa.
@@ -131,13 +116,11 @@ export default function Portfolio() {
         </motion.div>
       </div>
 
-      {/* Duas faixas de scroll */}
       <div className="space-y-4 px-6 md:px-12">
         <ScrollRow items={row1} onSelect={setSelected} />
         <ScrollRow items={row2} onSelect={setSelected} />
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -157,25 +140,15 @@ export default function Portfolio() {
               className="relative w-full max-w-4xl rounded-2xl overflow-hidden border border-[#01FEC2]/20"
               style={{ boxShadow: "0 0 80px rgba(1,254,194,0.15)" }}
             >
-              {/* Fechar */}
               <button
                 onClick={() => setSelected(null)}
                 className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/80 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
-
-              {/* Imagem */}
               <div className="relative aspect-video w-full bg-[#131515]">
-                <Image
-                  src={selected.img}
-                  alt={selected.nome}
-                  fill
-                  className="object-cover object-top"
-                />
+                <Image src={selected.img} alt={selected.nome} fill className="object-cover object-top" />
               </div>
-
-              {/* Nome */}
               <div className="bg-[#1a1d1d] border-t border-[#2a2e2e] px-5 py-3 flex items-center justify-between">
                 <p className="text-sm font-medium text-white/80">{selected.nome}</p>
                 <span className="text-xs text-[#01FEC2]/60">GrowDoc</span>

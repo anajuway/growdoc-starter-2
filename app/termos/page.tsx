@@ -102,25 +102,24 @@ Ao clicar em "Entendi, quero começar!", o Contratante declara ter lido, compree
 
 A confirmação do pagamento constitui aceite integral e irrevogável de todos os termos e condições desta contratação, independentemente de qualquer outra formalidade.`;
 
-function registrarAceite(nome: string, email: string) {
+async function registrarAceite(nome: string, email: string) {
   const timestamp = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
   const params = new URLSearchParams({
     nome, email, cpf: "-", telefone: "-",
     valorPago: "R$ 1.500,00",
     entregaveis: ENTREGAVEIS, plano: PLANO, timestamp, ip: "-",
   });
-  try {
-    navigator.sendBeacon(`${WEBHOOK_URL}?${params.toString()}`);
-  } catch {
-    new window.Image().src = `${WEBHOOK_URL}?${params.toString()}`;
-  }
-  try {
+
+  // Dispara os dois em paralelo e aguarda ambos
+  // CORS error no webhook é esperado mas o App Script já executou no servidor
+  await Promise.allSettled([
+    fetch(`${WEBHOOK_URL}?${params.toString()}`),
     fetch(FORMSPREE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ nome, email, plano: PLANO, entregaveis: ENTREGAVEIS, timestamp }),
-    });
-  } catch {}
+    }),
+  ]);
 }
 
 export default function TermosPage() {
@@ -144,10 +143,10 @@ export default function TermosPage() {
     }
   };
 
-  const handleConcordar = (e: React.MouseEvent) => {
+  const handleConcordar = async (e: React.MouseEvent) => {
     if (!podeProsseguir) { e.preventDefault(); return; }
     e.preventDefault();
-    registrarAceite(nome, email);
+    await registrarAceite(nome, email);
     window.open(CHECKOUT_URL, "_blank");
   };
 

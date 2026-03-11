@@ -6,9 +6,10 @@ import Image from "next/image";
 import { Check, Shield, Clock, FileText, ArrowRight, AlertCircle, Info } from "lucide-react";
 import confetti from "canvas-confetti";
 
-const CHECKOUT_URL = "https://pay.barte.com/payment-link/dae0215c-e812-4bb6-b08e-117e620ef82c";
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMsMAp-HVv_LiVTntFFNk-zznUUKj0usBgpfH_LaojDG_Y_b0pt6KQF2LDfevBrUk/exec";
-const FORMSPREE_URL = "https://formspree.io/f/xpqjvelq";
+const CHECKOUT_URL = "https://pay.barte.com/payment-link/d4ca2a6d-2a99-4b62-9c6e-877c5988790b";
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbycap7g8OWi2A64SsQ2hkeqhie4SeqRnXXsnrM8QVb9RT_Fy7KsV8Mzw_pBSbLT71Zf/exec";
+const PLANO = "GrowDoc StartDigital";
+const ENTREGAVEIS = "Landing Page, Google Meu Negocio (SEO), Ensaio ART.IA (5 fotos), 3 Posts Iniciais para Instagram, Identidade Visual Basica (logo + paleta + tipografia), Manual de Sobrevivencia do Marketing Medico";
 
 const pontosPrincipais = [
   {
@@ -20,6 +21,7 @@ const pontosPrincipais = [
       { tipo: "ok", texto: "Ensaio ART.IA — 5 fotos profissionais com IA" },
       { tipo: "ok", texto: "3 Posts Iniciais para Instagram (vídeo, estático ou carrossel)" },
       { tipo: "ok", texto: "Manual de Sobrevivência do Marketing Médico (livro digital exclusivo GrowDoc)" },
+      { tipo: "ok", texto: "Identidade Visual Básica — logo, paleta de cores e tipografia" },
     ],
   },
   {
@@ -38,12 +40,12 @@ const pontosPrincipais = [
       { tipo: "info", texto: "Valores pagos não serão reembolsados" },
       { tipo: "info", texto: "Por ser projeto único, o contrato encerra-se automaticamente com a entrega dos itens" },
       { tipo: "info", texto: "A GrowDoc não garante resultados comerciais (pacientes, faturamento etc.) — nosso compromisso é com os itens entregues; a conversão depende de fatores externos" },
-      { tipo: "info", texto: "Não estão incluídos: anúncios pagos, gestão de redes sociais ou branding" },
+      { tipo: "info", texto: "Não estão incluídos: anúncios pagos ou gestão contínua de redes sociais" },
     ],
   },
 ];
 
-const termosCompletos = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS — GROWDOC STARTER PLUS
+const termosCompletos = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS — GROWDOC STARTDIGITAL
 
 CONTRATADA: GROWDOC LTDA.
 CNPJ: 65.329.313/0001-33
@@ -53,17 +55,18 @@ Contato: financeiro@growdoc.com.br
 CONTRATANTE: Identificado no momento da compra (dados fornecidos na plataforma de pagamento).
 
 1. OBJETO
-Implementação do Growdoc STARTER PLUS, conforme entregáveis descritos nesta página. Não estão incluídos serviços de tráfego pago, gestão de redes sociais, branding, ou quaisquer outros serviços não expressamente listados.
+Implementação do Growdoc STARTDIGITAL, conforme entregáveis descritos nesta página. Não estão incluídos serviços de tráfego pago, gestão contínua de redes sociais, ou quaisquer outros serviços não expressamente listados.
 
 2. ENTREGÁVEIS
 a) Landing Page de alta conversão (hospedada no domínio GrowDoc);
 b) Configuração da Ficha Google Meu Negócio com palavras-chave de SEO;
 c) Ensaio ART.IA — 5 fotos profissionais geradas com IA;
 d) 3 (três) Posts Iniciais para Instagram (vídeo, estático ou carrossel — formato a definir com o cliente);
-e) Manual de Sobrevivência do Marketing Médico — livro digital exclusivo GrowDoc, disponível para consumo enquanto a assinatura estiver ativa.
+e) Manual de Sobrevivência do Marketing Médico — livro digital exclusivo GrowDoc, disponível para consumo enquanto a assinatura estiver ativa;
+f) Identidade Visual Básica — desenvolvimento de logo, definição de paleta de cores e tipografia para uso nas artes e comunicação da marca.
 
 3. PAGAMENTO
-Valor total: R$ 3.500,00, pagável via PIX, boleto ou cartão de crédito. O link de pagamento tem validade de 5 dias corridos.
+Valor total: R$ 4.200,00, pagável via PIX, boleto ou cartão de crédito. O link de pagamento tem validade de 5 dias corridos.
 
 4. PRAZO DE EXECUÇÃO
 1 (um) mês a partir da confirmação do pagamento e preenchimento do formulário de onboarding.
@@ -105,30 +108,10 @@ Ao clicar em "Entendi, quero começar!", o Contratante declara ter lido, compree
 
 A confirmação do pagamento constitui aceite integral e irrevogável de todos os termos e condições desta contratação, independentemente de qualquer outra formalidade.`;
 
-async function registrarAceite(nome: string, email: string) {
-  let ip = "desconhecido";
-  try {
-    const r = await fetch("https://api.ipify.org?format=json");
-    const d = await r.json();
-    ip = d.ip;
-  } catch {}
-
+function registrarAceite(nome: string, email: string) {
   const timestamp = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
-
-  if (WEBHOOK_URL) {
-    try {
-      const body = new URLSearchParams({ timestamp, plano: "GrowDoc Starter Plus", nome, email, ip, userAgent: navigator.userAgent.substring(0, 250), url: window.location.href });
-      fetch(WEBHOOK_URL, { method: "POST", mode: "no-cors", body });
-    } catch {}
-  }
-
-  try {
-    fetch(FORMSPREE_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ nome, email, plano: "GrowDoc Starter Plus", timestamp, ip }),
-    });
-  } catch {}
+  const params = new URLSearchParams({ nome, email, cpf: "-", telefone: "-", valorPago: "R$ 4.200,00", entregaveis: ENTREGAVEIS, plano: PLANO, timestamp, ip: "-" });
+  try { navigator.sendBeacon(`${WEBHOOK_URL}?${params.toString()}`); } catch { new window.Image().src = `${WEBHOOK_URL}?${params.toString()}`; }
 }
 
 export default function TermosPage() {
@@ -152,9 +135,11 @@ export default function TermosPage() {
     }
   };
 
-  const handleConcordar = async (e: React.MouseEvent) => {
+  const handleConcordar = (e: React.MouseEvent) => {
     if (!podeProsseguir) { e.preventDefault(); return; }
+    e.preventDefault();
     registrarAceite(nome, email);
+    window.open(CHECKOUT_URL, "_blank");
   };
 
   return (

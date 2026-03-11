@@ -7,8 +7,10 @@ import { Check, Shield, Clock, FileText, ArrowRight, AlertCircle, Info } from "l
 import confetti from "canvas-confetti";
 
 const CHECKOUT_URL = "https://pay.barte.com/payment-link/ac24dcba-e550-46e9-a3b0-dbc236b64dac";
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMsMAp-HVv_LiVTntFFNk-zznUUKj0usBgpfH_LaojDG_Y_b0pt6KQF2LDfevBrUk/exec";
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbycap7g8OWi2A64SsQ2hkeqhie4SeqRnXXsnrM8QVb9RT_Fy7KsV8Mzw_pBSbLT71Zf/exec";
 const FORMSPREE_URL = "https://formspree.io/f/xpqjvelq";
+const PLANO = "Site Institucional GrowDoc";
+const ENTREGAVEIS = "Site Institucional Medico completo, Design premium personalizado, Copywriting medico profissional, Estrutura otimizada para SEO";
 
 const pontosPrincipais = [
   {
@@ -100,28 +102,23 @@ Ao clicar em "Entendi, quero começar!", o Contratante declara ter lido, compree
 
 A confirmação do pagamento constitui aceite integral e irrevogável de todos os termos e condições desta contratação, independentemente de qualquer outra formalidade.`;
 
-async function registrarAceite(nome: string, email: string) {
-  let ip = "desconhecido";
-  try {
-    const r = await fetch("https://api.ipify.org?format=json");
-    const d = await r.json();
-    ip = d.ip;
-  } catch {}
-
+function registrarAceite(nome: string, email: string) {
   const timestamp = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
-
-  if (WEBHOOK_URL) {
-    try {
-      const body = new URLSearchParams({ timestamp, plano: "Site Institucional GrowDoc", nome, email, ip, userAgent: navigator.userAgent.substring(0, 250), url: window.location.href });
-      fetch(WEBHOOK_URL, { method: "POST", mode: "no-cors", body });
-    } catch {}
+  const params = new URLSearchParams({
+    nome, email, cpf: "-", telefone: "-",
+    valorPago: "R$ 1.500,00",
+    entregaveis: ENTREGAVEIS, plano: PLANO, timestamp, ip: "-",
+  });
+  try {
+    navigator.sendBeacon(`${WEBHOOK_URL}?${params.toString()}`);
+  } catch {
+    new window.Image().src = `${WEBHOOK_URL}?${params.toString()}`;
   }
-
   try {
     fetch(FORMSPREE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ nome, email, plano: "Site Institucional GrowDoc", timestamp, ip }),
+      body: JSON.stringify({ nome, email, plano: PLANO, entregaveis: ENTREGAVEIS, timestamp }),
     });
   } catch {}
 }
@@ -147,9 +144,11 @@ export default function TermosPage() {
     }
   };
 
-  const handleConcordar = async (e: React.MouseEvent) => {
+  const handleConcordar = (e: React.MouseEvent) => {
     if (!podeProsseguir) { e.preventDefault(); return; }
+    e.preventDefault();
     registrarAceite(nome, email);
+    window.open(CHECKOUT_URL, "_blank");
   };
 
   return (
